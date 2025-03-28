@@ -4,12 +4,12 @@
 #define N 24
 
 bool	solve(int maze[N][N], int visited[N][N], int row, int col)
-{
-	if (maze[row][col] == 2)
-		return (true);
+{		
 	if (row < 0 || row >= N || col < 0 || col >= N || !maze[row][col] || visited[row][col])
 		return (false);
 	visited[row][col] = 1;
+	if (maze[row][col] == 2)
+		return (true);
 	if (solve(maze, visited, row + 1, col))
 			return (true);
 	if (solve(maze, visited, row - 1, col))
@@ -68,7 +68,7 @@ int	main(void)
 		{0,0,1,0,0,1,0,0,0,0,0,0,1,1,1,1,0,0,0,1,1,2,0,0}};
 	int	visited[N][N] = {0};
 
-	if (!solve(maze, visited, 0, 5))
+	if (!solve(maze, visited, 23, 13))
 		printf("No solution to this maze\n");
 	print_maze_path(maze, visited);
 	return (0);
